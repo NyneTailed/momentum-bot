@@ -19,13 +19,14 @@
  "equity_curve": [
   [
    1790896949153,
-   998.53,
-   84718.9
+   998.96,
+   84717.4
   ]
  ],
  "trades": [
   {
-   "zeit": "2026-10-01 23:22",
+   "ts": 1790896920000,
+   "zeit_utc": "2026-10-01 23:22",
    "aktion": "KAUF",
    "coin": "NEAR",
    "menge": 40.801015,
@@ -35,7 +36,8 @@
    "grund": "Wochen-Umschichtung"
   },
   {
-   "zeit": "2026-10-01 23:22",
+   "ts": 1790896920000,
+   "zeit_utc": "2026-10-01 23:22",
    "aktion": "KAUF",
    "coin": "UNI",
    "menge": 21.805699,
@@ -45,7 +47,8 @@
    "grund": "Wochen-Umschichtung"
   },
   {
-   "zeit": "2026-10-01 23:22",
+   "ts": 1790896920000,
+   "zeit_utc": "2026-10-01 23:22",
    "aktion": "KAUF",
    "coin": "AVAX",
    "menge": 17.840123,
@@ -55,7 +58,8 @@
    "grund": "Wochen-Umschichtung"
   },
   {
-   "zeit": "2026-10-01 23:22",
+   "ts": 1790896920000,
+   "zeit_utc": "2026-10-01 23:22",
    "aktion": "KAUF",
    "coin": "XTZ",
    "menge": 608.539014,
@@ -65,7 +69,8 @@
    "grund": "Wochen-Umschichtung"
   },
   {
-   "zeit": "2026-10-01 23:22",
+   "ts": 1790896920000,
+   "zeit_utc": "2026-10-01 23:22",
    "aktion": "KAUF",
    "coin": "FIL",
    "menge": 192.62416,
