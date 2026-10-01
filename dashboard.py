@@ -204,7 +204,7 @@ $("ranking").innerHTML = table([["#"], ["Coin"], [`${D.lookback}-Tage`, "num"]],
     <td class="num ${cls(r[1])}">${pct(r[1])}</td></tr>`), "Wird beim ersten Tagesschluss berechnet.");
 
 $("trades").innerHTML = table([["Zeit"], ["Aktion"], ["Coin"], ["Menge", "num"], ["Preis", "num"], ["USDT", "num"], ["Grund"]],
-  D.trades.map(t => `<tr><td>${t.zeit}</td><td>${t.aktion}</td><td><b>${t.coin}</b></td><td class="num">${t.menge}</td>
+  D.trades.map(t => `<tr><td>${t.ts ? dt(t.ts) : (t.zeit || t.zeit_utc + " UTC")}</td><td>${t.aktion}</td><td><b>${t.coin}</b></td><td class="num">${t.menge}</td>
     <td class="num">${t.preis}</td><td class="num">${usd(t.usdt)}</td><td>${t.grund}</td></tr>`), "Noch keine Trades.");
 
 $("footer").textContent = `${D.mode === "paper" ? "Simulation mit Live-Kursen – kein echtes Geld." : "Bitget Demo-Konto – kein echtes Geld."}

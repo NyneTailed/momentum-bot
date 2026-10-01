@@ -19,7 +19,7 @@ import sys
 import time
 import urllib.error
 import webbrowser
-from datetime import datetime
+from datetime import datetime, timezone
 
 from bitget import Bitget, BitgetError, load_env
 from dashboard import write_dashboard
@@ -227,7 +227,7 @@ class MomentumBot:
         except BitgetError as e:
             log.error("%s %s fehlgeschlagen: %s", "Kauf" if side == "buy" else "Verkauf", symbol, e)
             return False
-        row = {"zeit": datetime.now().strftime("%Y-%m-%d %H:%M"), "aktion": "KAUF" if side == "buy" else "VERKAUF",
+        row = {"ts": self.market._now_ms(), "zeit_utc": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M"), "aktion": "KAUF" if side == "buy" else "VERKAUF",
                "coin": symbol.replace("USDT", ""), "menge": round(r["qty"], 6), "preis": round(r["price"], 6),
                "usdt": round(r["usdt"], 2), "gebuehr": round(r["fee"], 4), "grund": reason}
         log.info("%-7s %-6s %12.6f @ %-12.6g = %9.2f USDT  (%s)",
@@ -278,7 +278,7 @@ def main():
     if args.mode:
         cfg["mode"] = args.mode
     setup_logging()
-    note = "stuendlich in der Cloud (GitHub Actions)" if args.command == "once" else None
+    note = "stündlich in der Cloud (GitHub Actions)" if args.command == "once" else None
     bot = MomentumBot(cfg, out_dir=args.out, check_note=note)
     if args.command == "status":
         bot.market.sync_time()
