@@ -1,0 +1,11 @@
+# NIEMALS hochladen: API-Keys
+.env
+
+# lokale Dateien
+*.log
+*.tmp
+__pycache__/
+logs/
+results/
+/Dashboard_Simulation.html
+/Dashboard_Bitget_Demo.html

@@ -1,0 +1,26 @@
+{
+  "mode": "paper",
+
+  "universe_paper": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT", "DOTUSDT", "LTCUSDT",
+                     "LINKUSDT", "BCHUSDT", "XLMUSDT", "UNIUSDT", "TRXUSDT", "SOLUSDT", "AVAXUSDT", "ATOMUSDT",
+                     "ETCUSDT", "FILUSDT", "AAVEUSDT", "ALGOUSDT", "VETUSDT", "XTZUSDT", "NEARUSDT"],
+  "universe_bitget_demo": ["BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "ADAUSDT", "DOGEUSDT", "DOTUSDT", "LTCUSDT",
+                           "LINKUSDT", "BCHUSDT", "UNIUSDT", "TRXUSDT", "SOLUSDT", "AVAXUSDT", "NEARUSDT"],
+
+  "top_n": 5,
+  "lookback_days": 30,
+  "regime_sma_days": 200,
+  "rebalance_days": 7,
+
+  "cash_buffer_pct": 2,
+  "min_trade_usdt": 10,
+  "rebalance_tolerance_pct": 3,
+
+  "paper": {
+    "start_usdt": 1000,
+    "fee_rate": 0.001,
+    "slippage_pct": 0.05
+  },
+
+  "check_minutes": 5
+}

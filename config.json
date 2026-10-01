@@ -1,0 +1,43 @@
+{
+  "symbols": ["BTCUSDT", "ETHUSDT", "SOLUSDT", "XRPUSDT", "DOGEUSDT"],
+  "product_type": "USDT-FUTURES",
+  "margin_coin": "USDT",
+  "timeframe": "1H",
+
+  "order_type": "limit",
+  "limit_offset_atr": 0.25,
+  "limit_valid_candles": 2,
+  "tp_as_limit": true,
+
+  "leverage": 5,
+  "margin_mode": "isolated",
+  "risk_per_trade_pct": 1.0,
+  "max_open_positions": 5,
+  "max_daily_loss_pct": 3.0,
+  "max_trades_per_day": 10,
+  "exit_on_opposite_cross": false,
+
+  "strategy": {
+    "ema_fast": 9,
+    "ema_slow": 21,
+    "ema_trend": 200,
+    "rsi_period": 14,
+    "rsi_long_min": 50,
+    "rsi_long_max": 70,
+    "rsi_short_min": 30,
+    "rsi_short_max": 50,
+    "atr_period": 14,
+    "sl_atr_mult": 2.0,
+    "tp_atr_mult": 4.0
+  },
+
+  "backtest": {
+    "days": 365,
+    "start_equity": 1000,
+    "fee_rate": 0.0006,
+    "maker_fee_rate": 0.0002,
+    "slippage_pct": 0.02
+  },
+
+  "poll_seconds": 30
+}

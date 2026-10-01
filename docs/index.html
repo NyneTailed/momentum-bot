@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum-Bot</title>
+<style>
+:root { color-scheme: light; --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --ring: rgba(11,11,11,0.10); --accent: #2a78d6; }
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) { color-scheme: dark; --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --ring: rgba(255,255,255,0.10); --accent: #3987e5; }
+}
+:root[data-theme="dark"] { color-scheme: dark; --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff; --ink-2: #c3c2b7; --ring: rgba(255,255,255,0.10); --accent: #3987e5; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 560px; margin: 0 auto; padding: 40px 16px; }
+h1 { font-size: 24px; margin: 0 0 6px; }
+p { color: var(--ink-2); margin: 0 0 24px; }
+a.card { display: block; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); padding: 18px; margin-bottom: 12px; color: inherit; text-decoration: none; }
+a.card:hover { box-shadow: 0 0 0 2px var(--accent); }
+a.card b { display: block; font-size: 16px; margin-bottom: 2px; }
+a.card span { color: var(--ink-2); font-size: 13px; }
+small { color: var(--ink-2); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Momentum-Bot</h1>
+  <p>Wöchentliche Rotation in die 5 stärksten Coins, Schutzschalter bei Bärenmarkt. Läuft stündlich in der Cloud.</p>
+  <a class="card" href="Dashboard_Simulation.html"><b>Simulation (Spot, 23 Coins)</b><span>Simuliertes Spot-Konto mit 1.000 USDT und Live-Kursen</span></a>
+  <a class="card" href="Dashboard_Bitget_Demo.html"><b>Bitget Demo-Konto (15 Coins)</b><span>Echte Orders auf dem Bitget-Demo-Konto – erscheint, sobald der API-Key hinterlegt ist</span></a>
+  <small>Nur Demogeld. Keine Anlageberatung.</small>
+</main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+name: Momentum-Bot
+
+on:
+  schedule:
+    - cron: "7 * * * *"   # stuendlich (GitHub startet teils einige Minuten spaeter)
+  workflow_dispatch:       # manuell starten: Actions -> Momentum-Bot -> Run workflow
+
+permissions:
+  contents: write          # Stand + Dashboard zurueck ins Projekt speichern
+
+concurrency:
+  group: momentum-bot
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      BITGET_API_KEY: ${{ secrets.BITGET_API_KEY }}
+      BITGET_API_SECRET: ${{ secrets.BITGET_API_SECRET }}
+      BITGET_PASSPHRASE: ${{ secrets.BITGET_PASSPHRASE }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Simulation (Spot, 23 Coins)
+        run: python momentum_bot.py once --mode paper --out docs
+
+      - name: Bitget Demo-Konto (nur wenn API-Key hinterlegt)
+        if: always() && env.BITGET_API_KEY != ''
+        run: python momentum_bot.py once --mode bitget_demo --out docs
+
+      - name: Stand speichern
+        if: always()
+        run: |
+          git config user.name "momentum-bot"
+          git config user.email "momentum-bot@users.noreply.github.com"
+          git add momentum_data docs
+          if git diff --cached --quiet; then echo "Keine Aenderungen"; exit 0; fi
+          git commit -m "Bot-Lauf $(date -u +'%Y-%m-%d %H:%M') UTC"
+          git pull --rebase
+          git push
