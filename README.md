@@ -45,8 +45,26 @@ Beide Modi können gleichzeitig laufen.
 - **Ohne laufenden Bot:** `python momentum_bot.py status --mode paper` (bzw. `--mode bitget_demo`) zeigt den Stand und aktualisiert das Dashboard
 - **Dateien:** `momentum_data/` enthält Log (`bot.log`), Trades als CSV und den Zustand
 
+## In der Cloud laufen lassen (PC kann aus sein)
+GitHub Actions startet den Bot **stündlich kostenlos** in der Cloud (`.github/workflows/momentum-bot.yml`). Das Dashboard ist dann als Webseite erreichbar, auch auf dem Handy.
+
+1. **GitHub-Konto** anlegen: https://github.com/signup
+2. **Neues Repository** erstellen: https://github.com/new → Name z.B. `momentum-bot`, **Public**, *ohne* README → „Create repository“
+3. **Hochladen:** im Ordner `git remote add origin https://github.com/DEIN-NAME/momentum-bot.git` und `git push -u origin main` (beim ersten Mal öffnet sich ein GitHub-Login im Browser)
+4. **Dashboard einschalten:** Repository → Settings → Pages → Source „Deploy from a branch“ → Branch `main`, Ordner `/docs` → Save.
+   Adresse: `https://DEIN-NAME.github.io/momentum-bot/`
+5. **Optional, Bitget-Demo-Konto:** Settings → Secrets and variables → Actions → „New repository secret“, dreimal:
+   `BITGET_API_KEY`, `BITGET_API_SECRET`, `BITGET_PASSPHRASE` (Werte deines Demo-API-Keys). Ohne Secrets läuft nur die Simulation.
+6. **Testen:** Reiter „Actions“ → „Momentum-Bot“ → „Run workflow“. Nach ca. 1–2 Minuten ist das Dashboard aktualisiert (Pages braucht danach noch ca. 1 Minute).
+
+Hinweise:
+- Keys liegen nur verschlüsselt als Secret bei GitHub, nie in den Dateien (`.env` wird nicht hochgeladen).
+- **Den Demo-Modus nicht gleichzeitig lokal und in der Cloud laufen lassen**, sonst handeln zwei Bots auf demselben Konto.
+- Schlägt ein Lauf fehl, schickt GitHub eine E-Mail. Die Details stehen im Reiter „Actions“.
+- Das Projekt ist öffentlich: Code, Demo-Kontostand und Trades sind einsehbar, die Keys nicht.
+
 ## Wichtig
-- **Der Bot muss laufen**, damit er umschichten und den Schutzschalter auslösen kann. Er prüft alle 5 Minuten, gehandelt wird nur zum Tagesschluss (18:00 Uhr MESZ). Läuft er zu dieser Zeit nicht, holt er es beim nächsten Start nach.
+- **Lokal muss der Bot laufen**, damit er umschichten und den Schutzschalter auslösen kann. Er prüft alle 5 Minuten, gehandelt wird nur zum Tagesschluss (18:00 Uhr MESZ). Läuft er zu dieser Zeit nicht, holt er es beim nächsten Start nach.
 - **Fenster schließen oder Strg+C** stoppt den Bot. Gekaufte Coins bleiben im Konto, der Stand bleibt gespeichert.
 - **Für eine echte Aussage** braucht es mehrere Monate. In einzelnen Wochen kann alles passieren.
 - **Neu starten** (Simulation zurücksetzen): `momentum_data/state_paper.json` löschen.
