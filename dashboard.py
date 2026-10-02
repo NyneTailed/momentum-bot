@@ -47,6 +47,8 @@ h1 { font-size: 22px; margin: 0; }
 h2 { font-size: 15px; margin: 0 0 12px; }
 .badge { font-size: 12px; padding: 2px 10px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--ring); color: var(--ink-2); }
 .updated { color: var(--muted); font-size: 12px; margin-left: auto; }
+.stale { display: none; align-items: center; gap: 8px; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); padding: 10px 14px; margin-bottom: 12px; color: var(--ink-2); font-size: 13px; }
+.stale b { color: var(--ink); }
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
 .card { background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); padding: 16px; }
 .tile .label { color: var(--ink-2); font-size: 12px; }
@@ -84,6 +86,7 @@ footer { color: var(--muted); font-size: 12px; margin-top: 20px; }
     <span class="badge" id="mode"></span>
     <span class="updated" id="updated"></span>
   </header>
+  <div class="stale" id="stale"></div>
   <section class="tiles" id="tiles"></section>
   <section class="card">
     <h2 id="chart-title">Kontowert</h2>
@@ -114,6 +117,12 @@ const ICON_STOP = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8
 
 $("mode").textContent = D.mode_label;
 $("updated").textContent = "Stand " + dt(D.updated) + " · lädt jede Minute neu";
+const ageH = (Date.now() - D.updated) / 3600000;
+if (ageH > 2) {
+  const s = $("stale"); s.style.display = "flex";
+  s.innerHTML = `<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l7 13H1z" fill="#fab219"/><rect x="7.2" y="6" width="1.6" height="4.5" rx=".8" fill="#0b0b0b"/><circle cx="8" cy="12.3" r=".9" fill="#0b0b0b"/></svg>
+    <span><b>Hinweis: Stand ist ${Math.floor(ageH)} Std. alt.</b> Der letzte Bot-Lauf war um ${dt(D.updated)}. GitHub verzögert geplante Läufe manchmal – die Werte unten sind von diesem Zeitpunkt.</span>`;
+}
 
 // ---- Kacheln
 const start = D.start, sig = D.signal || {};

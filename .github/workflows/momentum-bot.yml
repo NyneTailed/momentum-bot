@@ -2,7 +2,9 @@ name: Momentum-Bot
 
 on:
   schedule:
-    - cron: "7 * * * *"   # stuendlich (GitHub startet teils einige Minuten spaeter)
+    # 4 Versuche pro Stunde, abseits der vollen Stunde: GitHub ueberspringt geplante Laeufe
+    # bei hoher Last oft. Mehr Versuche = zuverlaessiger; der Bot handelt trotzdem nur einmal am Tag.
+    - cron: "11,26,41,56 * * * *"
   workflow_dispatch:       # manuell starten: Actions -> Momentum-Bot -> Run workflow
 
 permissions:
