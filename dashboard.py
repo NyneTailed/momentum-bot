@@ -12,7 +12,7 @@ TEMPLATE = r"""<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="60">
+<meta http-equiv="refresh" content="900">
 <title>Momentum-Bot</title>
 <style>
 :root {
@@ -47,6 +47,7 @@ h1 { font-size: 22px; margin: 0; }
 h2 { font-size: 15px; margin: 0 0 12px; }
 .badge { font-size: 12px; padding: 2px 10px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--ring); color: var(--ink-2); }
 .updated { color: var(--muted); font-size: 12px; margin-left: auto; }
+.live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--good-mark); margin-right: 6px; vertical-align: 1px; }
 .stale { display: none; align-items: center; gap: 8px; background: var(--surface); border-radius: 12px; box-shadow: 0 0 0 1px var(--ring); padding: 10px 14px; margin-bottom: 12px; color: var(--ink-2); font-size: 13px; }
 .stale b { color: var(--ink); }
 .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 16px; }
@@ -116,39 +117,53 @@ const ICON_OK = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" 
 const ICON_STOP = '<svg width="16" height="16" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="var(--bad)"/><rect x="4.5" y="7" width="7" height="2" rx="1" fill="#fff"/></svg>';
 
 $("mode").textContent = D.mode_label;
-$("updated").textContent = "Stand " + dt(D.updated) + " · lädt jede Minute neu";
-const ageH = (Date.now() - D.updated) / 3600000;
-if (ageH > 2) {
-  const s = $("stale"); s.style.display = "flex";
-  s.innerHTML = `<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l7 13H1z" fill="#fab219"/><rect x="7.2" y="6" width="1.6" height="4.5" rx=".8" fill="#0b0b0b"/><circle cx="8" cy="12.3" r=".9" fill="#0b0b0b"/></svg>
-    <span><b>Hinweis: Stand ist ${Math.floor(ageH)} Std. alt.</b> Der letzte Bot-Lauf war um ${dt(D.updated)}. GitHub verzögert geplante Läufe manchmal – die Werte unten sind von diesem Zeitpunkt.</span>`;
+const start = D.start, sig = D.signal || {};
+const smaDist = sig.btc_sma ? (sig.btc / sig.btc_sma - 1) * 100 : null;
+const curve0 = D.curve.filter(p => p[2]);
+const tm = ms => new Date(ms).toLocaleTimeString("de-DE");
+const LIVE = D.mode === "paper";   // Live-Rechnung: Kontowert = freies USDT + Menge x aktueller Kurs
+let live = null, liveFailed = false, ticks = 0;
+const now = () => live || {ts: D.updated, equity: D.equity, btc: D.btc_price, holdings: D.holdings};
+
+function renderHeader() {
+  $("updated").innerHTML = live
+    ? `<span class="live-dot"></span>Live · Kurse von ${tm(live.ts)} · letzter Bot-Lauf ${dt(D.updated)}`
+    : LIVE && !liveFailed ? `Stand ${dt(D.updated)} · Live-Kurse werden geladen …`
+    : `Stand ${dt(D.updated)}` + (liveFailed ? " · Live-Kurse gerade nicht erreichbar" : "");
+  const ageH = (Date.now() - D.updated) / 3600000, s = $("stale");
+  if (ageH > 26) {
+    s.style.display = "flex";
+    s.innerHTML = `<svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5l7 13H1z" fill="#fab219"/><rect x="7.2" y="6" width="1.6" height="4.5" rx=".8" fill="#0b0b0b"/><circle cx="8" cy="12.3" r=".9" fill="#0b0b0b"/></svg>
+      <span><b>Hinweis: letzter Bot-Lauf vor ${Math.floor(ageH)} Std.</b> Die Kurse sind live, aber kaufen und verkaufen kann der Bot nur, wenn er läuft. GitHub hat geplante Läufe verzögert.</span>`;
+  }
 }
 
-// ---- Kacheln
-const start = D.start, sig = D.signal || {};
-const gain = D.equity - start.equity, gainPct = gain / start.equity * 100;
-const btcPct = start.btc ? (D.btc_price / start.btc - 1) * 100 : null;
-const smaDist = sig.btc_sma ? (sig.btc / sig.btc_sma - 1) * 100 : null;
-const tiles = [
-  {label: "Kontowert", value: usd(D.equity) + " USDT", sub: "davon frei: " + usd(D.available) + " USDT"},
-  {label: "Ergebnis seit Start", value: `<span class="${cls(gain)}">${gain >= 0 ? "+" : ""}${usd(gain)} USDT</span>`,
-   sub: `<span class="${cls(gainPct)}">${pct(gainPct)}</span> seit ${dt(start.ts)}`},
-  {label: "BTC im selben Zeitraum", value: `<span class="${cls(btcPct)}">${pct(btcPct)}</span>`,
-   sub: "BTC jetzt " + usd(D.btc_price, 0) + " $"},
-  {label: "Schutzschalter", value: sig.risk_on == null ? "–" :
-     `<span class="status">${sig.risk_on ? ICON_OK + "Investiert" : ICON_STOP + "USDT halten"}</span>`,
-   sub: smaDist == null ? "wartet auf ersten Tagesschluss" :
-     `BTC ${pct(smaDist)} zum ${D.sma_days}-Tage-Schnitt`},
-  {label: "Nächste Umschichtung", value: D.next_rebalance ? dshort(D.next_rebalance) : "beim nächsten Tagesschluss",
-   sub: "jeweils zum Tagesschluss (18:00 Uhr MESZ)"},
-];
-$("tiles").innerHTML = tiles.map(t => `<div class="card tile"><div class="label">${t.label}</div>
-  <div class="value">${t.value}</div><div class="sub">${t.sub}</div></div>`).join("");
+function renderTiles() {
+  const s = now();
+  const gain = s.equity - start.equity, gainPct = gain / start.equity * 100;
+  const btcPct = start.btc ? (s.btc / start.btc - 1) * 100 : null;
+  const tiles = [
+    {label: "Kontowert", value: usd(s.equity) + " USDT", sub: "davon frei: " + usd(D.available) + " USDT"},
+    {label: "Ergebnis seit Start", value: `<span class="${cls(gain)}">${gain >= 0 ? "+" : ""}${usd(gain)} USDT</span>`,
+     sub: `<span class="${cls(gainPct)}">${pct(gainPct)}</span> seit ${dt(start.ts)}`},
+    {label: "BTC im selben Zeitraum", value: `<span class="${cls(btcPct)}">${pct(btcPct)}</span>`,
+     sub: "BTC jetzt " + usd(s.btc, 0) + " $" + (start.btc ? ` · hätte ${usd(start.equity * (1 + btcPct / 100))} USDT` : "")},
+    {label: "Schutzschalter", value: sig.risk_on == null ? "–" :
+       `<span class="status">${sig.risk_on ? ICON_OK + "Investiert" : ICON_STOP + "USDT halten"}</span>`,
+     sub: smaDist == null ? "wartet auf ersten Tagesschluss" :
+       `BTC ${pct(smaDist)} zum ${D.sma_days}-Tage-Schnitt (Tagesschluss)`},
+    {label: "Nächste Umschichtung", value: D.next_rebalance ? dshort(D.next_rebalance) : "beim nächsten Tagesschluss",
+     sub: "jeweils zum Tagesschluss (18:00 Uhr MESZ)"},
+  ];
+  $("tiles").innerHTML = tiles.map(t => `<div class="card tile"><div class="label">${t.label}</div>
+    <div class="value">${t.value}</div><div class="sub">${t.sub}</div></div>`).join("");
+}
 
-// ---- Chart: Bot vs. BTC (auf Startkapital normiert)
-(function chart() {
+// ---- Chart: Bot vs. BTC (auf Startkapital normiert), letzter Punkt = live
+function renderChart() {
   const el = $("chart");
-  const pts = D.curve.filter(p => p[2]);
+  const pts = curve0.slice();
+  if (live) pts.push([live.ts, live.equity, live.btc]);
   $("chart-title").textContent = `Kontowert in USDT (Start ${usd(start.equity, 0)} USDT)`;
   if (pts.length < 2) { el.innerHTML = '<div class="empty">Noch zu wenig Daten – der Verlauf erscheint nach ein paar Stunden Laufzeit.</div>'; return; }
   const btc0 = start.btc || pts[0][2];
@@ -162,8 +177,9 @@ $("tiles").innerHTML = tiles.map(t => `<div class="card tile"><div class="label"
   for (let v = Math.ceil(lo / step) * step; v <= hi; v += step)
     g += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)"/>
           <text x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end" font-size="11" fill="var(--muted)">${usd(v, 0)}</text>`;
-  const nx = 5; for (let i = 0; i < nx; i++) { const t = xs[0] + (xs[xs.length - 1] - xs[0]) * i / (nx - 1);
-    g += `<text x="${x(t)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">${dshort(t)}</text>`; }
+  const span = xs[xs.length - 1] - xs[0], fmtX = span < 2 * 86400000 ? (t => new Date(t).toLocaleTimeString("de-DE", {hour: "2-digit", minute: "2-digit"})) : dshort;
+  const nx = 5; for (let i = 0; i < nx; i++) { const t = xs[0] + span * i / (nx - 1);
+    g += `<text x="${x(t)}" y="${H - 8}" text-anchor="middle" font-size="11" fill="var(--muted)">${fmtX(t)}</text>`; }
   const path = s => s.map((p, i) => (i ? "L" : "M") + x(p[0]).toFixed(1) + "," + y(p[1]).toFixed(1)).join("");
   const names = ["Bot", "BTC"], cols = ["var(--series-1)", "var(--series-2)"];
   let lines = "", labels = [];
@@ -186,27 +202,30 @@ $("tiles").innerHTML = tiles.map(t => `<div class="card tile"><div class="label"
     const px = x(xs[i]); show("visible");
     svg.getElementById("xh").setAttribute("x1", px); svg.getElementById("xh").setAttribute("x2", px);
     [0, 1].forEach(k => { const c = svg.getElementById("d" + k); c.setAttribute("cx", px); c.setAttribute("cy", y(S[k][i][1])); });
-    tip.innerHTML = `<div style="color:var(--muted);margin-bottom:4px">${dt(xs[i])}</div>` +
+    tip.innerHTML = `<div style="color:var(--muted);margin-bottom:4px">${dt(xs[i])}${live && i === xs.length - 1 ? " (live)" : ""}</div>` +
       [0, 1].map(k => `<div class="row"><i class="sw" style="background:${cols[k]}"></i>${names[k]}: <b>${usd(S[k][i][1])} USDT</b></div>`).join("");
     tip.style.display = "block";
     const left = px / W * r.width; tip.style.left = Math.min(left + 12, r.width - tip.offsetWidth - 4) + "px"; tip.style.top = "8px";
   });
   svg.getElementById("hit").addEventListener("mouseleave", () => { show("hidden"); tip.style.display = "none"; });
   function niceStep(s) { const p = Math.pow(10, Math.floor(Math.log10(s))); const n = s / p; return (n < 1.5 ? 1 : n < 3 ? 2 : n < 7 ? 5 : 10) * p; }
-})();
+}
 
 // ---- Tabellen
 const table = (head, rows, empty) => rows.length ? `<table><thead><tr>${head.map(h =>
   `<th class="${h[1] || ""}">${h[0]}</th>`).join("")}</tr></thead><tbody>${rows.join("")}</tbody></table>` : `<div class="empty">${empty}</div>`;
 
-const hs = D.holdings.slice().sort((a, b) => b.value - a.value);
-$("holdings").innerHTML = table([["Coin"], ["Wert USDT", "num"], ["Anteil", "num"], ["Einstand", "num"], ["Kurs", "num"], ["+/-", "num"]],
-  hs.map(h => { const ch = h.entry ? (h.price / h.entry - 1) * 100 : null;
-    return `<tr><td><b>${coin(h.symbol)}</b></td><td class="num">${usd(h.value)}</td><td class="num">${pct(h.value / D.equity * 100)}</td>
-      <td class="num">${h.entry ? h.entry.toPrecision(6) : "–"}</td><td class="num">${h.price.toPrecision(6)}</td><td class="num ${cls(ch)}">${pct(ch)}</td></tr>`; }),
-  sig.risk_on === false ? "Keine Coins – der Schutzschalter hält alles in USDT." : "Noch keine Coins gekauft.");
+function renderHoldings() {
+  const s = now();
+  const hs = s.holdings.slice().sort((a, b) => b.value - a.value);
+  $("holdings").innerHTML = table([["Coin"], ["Wert USDT", "num"], ["Anteil", "num"], ["Einstand", "num"], ["Kurs", "num"], ["+/-", "num"]],
+    hs.map(h => { const ch = h.entry ? (h.price / h.entry - 1) * 100 : null;
+      return `<tr><td><b>${coin(h.symbol)}</b></td><td class="num">${usd(h.value)}</td><td class="num">${pct(h.value / s.equity * 100)}</td>
+        <td class="num">${h.entry ? h.entry.toPrecision(6) : "–"}</td><td class="num">${h.price.toPrecision(6)}</td><td class="num ${cls(ch)}">${pct(ch)}</td></tr>`; }),
+    sig.risk_on === false ? "Keine Coins – der Schutzschalter hält alles in USDT." : "Noch keine Coins gekauft.");
+}
 
-$("rank-title").textContent = `Momentum-Rangliste (${D.lookback} Tage)`;
+$("rank-title").textContent = `Momentum-Rangliste (${D.lookback} Tage, Stand Tagesschluss)`;
 const picks = new Set(sig.picks || []);
 $("ranking").innerHTML = table([["#"], ["Coin"], [`${D.lookback}-Tage`, "num"]],
   (sig.ranking || []).slice(0, 12).map((r, i) => `<tr><td>${i + 1}</td><td><b>${coin(r[0])}</b>${picks.has(r[0]) ? '<span class="pick">Auswahl</span>' : ""}</td>
@@ -216,8 +235,25 @@ $("trades").innerHTML = table([["Zeit"], ["Aktion"], ["Coin"], ["Menge", "num"],
   D.trades.map(t => `<tr><td>${t.ts ? dt(t.ts) : (t.zeit || t.zeit_utc + " UTC")}</td><td>${t.aktion}</td><td><b>${t.coin}</b></td><td class="num">${t.menge}</td>
     <td class="num">${t.preis}</td><td class="num">${usd(t.usdt)}</td><td>${t.grund}</td></tr>`), "Noch keine Trades.");
 
-$("footer").textContent = `${D.mode === "paper" ? "Simulation mit Live-Kursen – kein echtes Geld." : "Bitget Demo-Konto – kein echtes Geld."}
-  Der Bot prüft ${D.check_note} und schreibt diese Seite neu. Keine Anlageberatung.`;
+$("footer").textContent = `${D.mode === "paper" ? "Simulation mit Live-Kursen – kein echtes Geld. Kontowert und Gewinn werden im Browser alle 10 Sekunden mit aktuellen Bitget-Kursen berechnet." : "Bitget Demo-Konto – kein echtes Geld."}
+  Gehandelt wird nur bei einem Bot-Lauf (${D.check_note}). Keine Anlageberatung.`;
+
+async function refresh() {
+  try {
+    const r = await fetch("https://api.bitget.com/api/v2/mix/market/tickers?productType=USDT-FUTURES", {cache: "no-store"});
+    const j = await r.json();
+    const px = {}; (j.data || []).forEach(t => { if (t.lastPr) px[t.symbol] = +t.lastPr; });
+    if (!px.BTCUSDT) throw new Error("keine Kurse");
+    const holdings = D.holdings.map(h => { const p = px[h.symbol] || h.price; return Object.assign({}, h, {price: p, value: h.qty * p}); });
+    live = {ts: Date.now(), equity: D.available + holdings.reduce((a, h) => a + h.value, 0), btc: px.BTCUSDT, holdings};
+    liveFailed = false;
+  } catch (e) { liveFailed = true; }
+  renderHeader(); renderTiles(); renderHoldings();
+  if (ticks++ % 6 === 0) renderChart();   // Chart alle 60 s neu zeichnen, Zahlen alle 10 s
+}
+
+renderHeader(); renderTiles(); renderHoldings(); renderChart();
+if (LIVE) { refresh(); setInterval(refresh, 10000); }
 </script>
 </body>
 </html>
