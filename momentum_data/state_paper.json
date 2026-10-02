@@ -36,6 +36,11 @@
    1790954864226,
    1011.97,
    85502.8
+  ],
+  [
+   1790971015328,
+   967.71,
+   84190.7
   ]
  ],
  "trades": [
@@ -97,116 +102,116 @@
  ],
  "signal": {
   "risk_on": true,
-  "btc": 84132.2,
-  "btc_sma": 71359.715,
+  "btc": 85299.9,
+  "btc_sma": 71425.685,
   "ranking": [
    [
     "NEARUSDT",
-    143.9
-   ],
-   [
-    "UNIUSDT",
-    59.08
+    160.2
    ],
    [
     "AVAXUSDT",
-    49.18
+    55.55
+   ],
+   [
+    "UNIUSDT",
+    53.95
    ],
    [
     "XTZUSDT",
-    46.75
-   ],
-   [
-    "FILUSDT",
-    41.91
+    52.02
    ],
    [
     "ALGOUSDT",
-    39.53
-   ],
-   [
-    "DOTUSDT",
-    34.91
-   ],
-   [
-    "LTCUSDT",
-    34.32
+    48.08
    ],
    [
     "AAVEUSDT",
-    32.16
+    43.96
+   ],
+   [
+    "LTCUSDT",
+    43.53
+   ],
+   [
+    "DOTUSDT",
+    42.82
    ],
    [
     "VETUSDT",
-    26.5
+    34.41
    ],
    [
-    "LINKUSDT",
-    25.02
+    "FILUSDT",
+    34.38
    ],
    [
     "BCHUSDT",
-    23.81
+    28.86
+   ],
+   [
+    "LINKUSDT",
+    28.47
    ],
    [
     "ADAUSDT",
-    23.47
+    28.39
    ],
    [
     "XLMUSDT",
-    22.57
+    27.46
    ],
    [
     "ETCUSDT",
-    21.07
+    24.07
    ],
    [
     "SOLUSDT",
-    15.03
+    20.82
    ],
    [
     "ATOMUSDT",
-    14.51
+    18.07
    ],
    [
     "DOGEUSDT",
-    14.01
-   ],
-   [
-    "BNBUSDT",
-    11.5
+    16.54
    ],
    [
     "ETHUSDT",
-    9.53
-   ],
-   [
-    "BTCUSDT",
-    8.03
+    12.82
    ],
    [
     "XRPUSDT",
-    7.98
+    12.75
+   ],
+   [
+    "BNBUSDT",
+    12.5
+   ],
+   [
+    "BTCUSDT",
+    10.42
    ],
    [
     "TRXUSDT",
-    3.05
+    3.75
    ]
   ],
   "picks": [
    "NEARUSDT",
-   "UNIUSDT",
    "AVAXUSDT",
+   "UNIUSDT",
    "XTZUSDT",
-   "FILUSDT"
+   "ALGOUSDT"
   ],
-  "day_ts": 1790784000000
+  "day_ts": 1790870400000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1790784000000,
+ "last_day_ts": 1790870400000,
  "last_rebalance_ts": 1790784000000
 }
