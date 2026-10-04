@@ -91,6 +91,11 @@
    1791124013232,
    1015.23,
    85123.4
+  ],
+  [
+   1791138049247,
+   1018.9,
+   85282.8
   ]
  ],
  "trades": [
@@ -152,116 +157,116 @@
  ],
  "signal": {
   "risk_on": true,
-  "btc": 84831.7,
-  "btc_sma": 71493.927,
+  "btc": 85209.8,
+  "btc_sma": 71536.59599999999,
   "ranking": [
    [
     "NEARUSDT",
-    133.86
+    148.22
    ],
    [
     "AVAXUSDT",
-    47.56
-   ],
-   [
-    "UNIUSDT",
-    44.96
-   ],
-   [
-    "XTZUSDT",
-    38.82
+    50.51
    ],
    [
     "ALGOUSDT",
-    38.05
+    46.49
+   ],
+   [
+    "XTZUSDT",
+    45.65
+   ],
+   [
+    "UNIUSDT",
+    43.71
    ],
    [
     "LTCUSDT",
-    35.77
-   ],
-   [
-    "DOTUSDT",
-    35.05
+    42.77
    ],
    [
     "FILUSDT",
-    34.95
+    41.54
+   ],
+   [
+    "DOTUSDT",
+    40.63
    ],
    [
     "AAVEUSDT",
-    33.32
+    36.16
    ],
    [
     "VETUSDT",
-    27.81
+    30.58
    ],
    [
     "BCHUSDT",
-    21.52
-   ],
-   [
-    "LINKUSDT",
-    17.3
-   ],
-   [
-    "ETCUSDT",
-    15.3
+    26.17
    ],
    [
     "XLMUSDT",
-    14.9
+    22.21
+   ],
+   [
+    "LINKUSDT",
+    21.3
+   ],
+   [
+    "ETCUSDT",
+    20.18
    ],
    [
     "SOLUSDT",
-    13.8
+    19.85
    ],
    [
     "ATOMUSDT",
-    13.44
+    19.39
    ],
    [
     "ADAUSDT",
-    10.98
-   ],
-   [
-    "BNBUSDT",
-    7.02
-   ],
-   [
-    "ETHUSDT",
-    6.58
+    16.45
    ],
    [
     "DOGEUSDT",
-    4.42
+    11.62
    ],
    [
-    "BTCUSDT",
-    4.32
+    "ETHUSDT",
+    10.04
+   ],
+   [
+    "BNBUSDT",
+    9.77
    ],
    [
     "XRPUSDT",
-    1.71
+    7.58
+   ],
+   [
+    "BTCUSDT",
+    7.35
    ],
    [
     "TRXUSDT",
-    1.54
+    1.65
    ]
   ],
   "picks": [
    "NEARUSDT",
    "AVAXUSDT",
-   "UNIUSDT",
+   "ALGOUSDT",
    "XTZUSDT",
-   "ALGOUSDT"
+   "UNIUSDT"
   ],
-  "day_ts": 1790956800000
+  "day_ts": 1791043200000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1790956800000,
+ "last_day_ts": 1791043200000,
  "last_rebalance_ts": 1790784000000
 }
