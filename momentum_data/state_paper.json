@@ -136,6 +136,11 @@
    1791299096244,
    1055.74,
    86483.8
+  ],
+  [
+   1791317607580,
+   1045.49,
+   85554.2
   ]
  ],
  "trades": [
@@ -197,116 +202,116 @@
  ],
  "signal": {
   "risk_on": true,
-  "btc": 85223.9,
-  "btc_sma": 71600.31450000001,
+  "btc": 85676.6,
+  "btc_sma": 71666.916,
   "ranking": [
    [
     "NEARUSDT",
-    130.96
+    113.32
    ],
    [
     "AVAXUSDT",
-    43.85
-   ],
-   [
-    "UNIUSDT",
-    40.65
-   ],
-   [
-    "XTZUSDT",
-    39.67
+    50.91
    ],
    [
     "FILUSDT",
-    39.53
+    45.77
+   ],
+   [
+    "XTZUSDT",
+    40.6
    ],
    [
     "AAVEUSDT",
-    38.63
+    35.48
    ],
    [
     "ALGOUSDT",
-    33.26
-   ],
-   [
-    "DOTUSDT",
-    31.1
+    31.17
    ],
    [
     "LTCUSDT",
-    30.49
+    28.29
    ],
    [
-    "BCHUSDT",
-    25.22
-   ],
-   [
-    "VETUSDT",
-    24.74
+    "DOTUSDT",
+    26.0
    ],
    [
     "ADAUSDT",
-    21.55
+    24.9
    ],
    [
-    "SOLUSDT",
-    15.92
+    "UNIUSDT",
+    24.28
+   ],
+   [
+    "BCHUSDT",
+    23.1
+   ],
+   [
+    "VETUSDT",
+    22.82
    ],
    [
     "XLMUSDT",
-    15.5
-   ],
-   [
-    "LINKUSDT",
-    15.44
+    16.39
    ],
    [
     "ETCUSDT",
-    15.03
+    15.06
+   ],
+   [
+    "LINKUSDT",
+    14.11
+   ],
+   [
+    "SOLUSDT",
+    13.93
    ],
    [
     "ATOMUSDT",
-    14.74
+    12.47
    ],
    [
     "ETHUSDT",
-    9.66
-   ],
-   [
-    "DOGEUSDT",
-    7.98
+    8.95
    ],
    [
     "BTCUSDT",
-    6.85
+    7.53
+   ],
+   [
+    "DOGEUSDT",
+    7.24
    ],
    [
     "XRPUSDT",
-    5.69
+    6.49
    ],
    [
     "BNBUSDT",
-    2.24
+    4.93
    ],
    [
     "TRXUSDT",
-    0.61
+    0.08
    ]
   ],
   "picks": [
    "NEARUSDT",
    "AVAXUSDT",
-   "UNIUSDT",
+   "FILUSDT",
    "XTZUSDT",
-   "FILUSDT"
+   "AAVEUSDT"
   ],
-  "day_ts": 1791129600000
+  "day_ts": 1791216000000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1791129600000,
+ "last_day_ts": 1791216000000,
  "last_rebalance_ts": 1790784000000
 }
