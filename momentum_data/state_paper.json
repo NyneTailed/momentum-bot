@@ -451,6 +451,11 @@
    1792329410279,
    924.91,
    81855.6
+  ],
+  [
+   1792341454330,
+   902.03,
+   81118.0
   ]
  ],
  "trades": [
@@ -534,116 +539,116 @@
  ],
  "signal": {
   "risk_on": true,
-  "btc": 81317.9,
-  "btc_sma": 72374.4185,
+  "btc": 81141.2,
+  "btc_sma": 72437.8545,
   "ranking": [
    [
     "NEARUSDT",
-    69.9
-   ],
-   [
-    "FILUSDT",
-    31.2
+    29.67
    ],
    [
     "AVAXUSDT",
-    29.14
+    17.64
+   ],
+   [
+    "FILUSDT",
+    14.83
    ],
    [
     "ALGOUSDT",
-    22.09
-   ],
-   [
-    "XTZUSDT",
-    21.99
+    12.46
    ],
    [
     "AAVEUSDT",
-    20.66
+    8.59
+   ],
+   [
+    "XTZUSDT",
+    7.74
    ],
    [
     "BCHUSDT",
-    17.31
+    7.55
    ],
    [
     "LTCUSDT",
-    9.56
-   ],
-   [
-    "ATOMUSDT",
-    8.95
-   ],
-   [
-    "ADAUSDT",
-    8.65
+    4.03
    ],
    [
     "BTCUSDT",
-    5.96
+    0.56
    ],
    [
-    "DOTUSDT",
-    4.88
-   ],
-   [
-    "ETCUSDT",
-    4.73
-   ],
-   [
-    "LINKUSDT",
-    4.71
-   ],
-   [
-    "SOLUSDT",
-    2.4
-   ],
-   [
-    "TRXUSDT",
-    0.32
-   ],
-   [
-    "UNIUSDT",
-    -0.2
-   ],
-   [
-    "XRPUSDT",
+    "ATOMUSDT",
     -1.12
    ],
    [
+    "ADAUSDT",
+    -1.73
+   ],
+   [
+    "TRXUSDT",
+    -2.18
+   ],
+   [
+    "LINKUSDT",
+    -3.12
+   ],
+   [
+    "DOTUSDT",
+    -5.65
+   ],
+   [
+    "ETCUSDT",
+    -5.74
+   ],
+   [
     "BNBUSDT",
-    -1.75
+    -5.81
    ],
    [
     "ETHUSDT",
-    -2.42
+    -7.91
    ],
    [
-    "DOGEUSDT",
-    -3.32
+    "XRPUSDT",
+    -8.05
+   ],
+   [
+    "SOLUSDT",
+    -8.05
    ],
    [
     "XLMUSDT",
-    -5.05
+    -9.15
+   ],
+   [
+    "DOGEUSDT",
+    -11.4
    ],
    [
     "VETUSDT",
-    -6.8
+    -14.97
+   ],
+   [
+    "UNIUSDT",
+    -19.94
    ]
   ],
   "picks": [
    "NEARUSDT",
-   "FILUSDT",
    "AVAXUSDT",
+   "FILUSDT",
    "ALGOUSDT",
-   "XTZUSDT"
+   "AAVEUSDT"
   ],
-  "day_ts": 1792166400000
+  "day_ts": 1792252800000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1792166400000,
+ "last_day_ts": 1792252800000,
  "last_rebalance_ts": 1791993600000
 }
