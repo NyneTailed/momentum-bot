@@ -1,18 +1,12 @@
 {
  "paper": {
-  "cash": 3.5919219724770812,
+  "cash": 535.5505079653562,
   "units": {
    "NEARUSDT": 40.80101466174723,
-   "AVAXUSDT": 17.84012278272896,
-   "XTZUSDT": 608.5390140750521,
-   "FILUSDT": 192.6241603607645,
    "AAVEUSDT": 1.0562585786967382
   },
   "entry": {
    "NEARUSDT": 4.798998299999999,
-   "AVAXUSDT": 10.975485,
-   "XTZUSDT": 0.32176079999999996,
-   "FILUSDT": 1.016508,
    "AAVEUSDT": 166.46319
   }
  },
@@ -571,6 +565,11 @@
    1792681899894,
    894.46,
    81487.2
+  ],
+  [
+   1792696676020,
+   889.28,
+   81324.3
   ]
  ],
  "trades": [
@@ -650,120 +649,150 @@
    "usdt": 176.0,
    "gebuehr": 0.176,
    "grund": "Wochen-Umschichtung"
+  },
+  {
+   "ts": 1792696700779,
+   "zeit_utc": "2026-10-22 19:18",
+   "aktion": "VERKAUF",
+   "coin": "AVAX",
+   "menge": 17.840123,
+   "preis": 9.127434,
+   "usdt": 162.67,
+   "gebuehr": 0.1628,
+   "grund": "Wochen-Umschichtung"
+  },
+  {
+   "ts": 1792696700779,
+   "zeit_utc": "2026-10-22 19:18",
+   "aktion": "VERKAUF",
+   "coin": "XTZ",
+   "menge": 608.539014,
+   "preis": 0.301449,
+   "usdt": 183.26,
+   "gebuehr": 0.1834,
+   "grund": "Wochen-Umschichtung"
+  },
+  {
+   "ts": 1792696700779,
+   "zeit_utc": "2026-10-22 19:18",
+   "aktion": "VERKAUF",
+   "coin": "FIL",
+   "menge": 192.62416,
+   "preis": 0.966716,
+   "usdt": 186.03,
+   "gebuehr": 0.1862,
+   "grund": "Wochen-Umschichtung"
   }
  ],
  "signal": {
   "risk_on": true,
-  "btc": 84495.5,
-  "btc_sma": 72660.6165,
+  "btc": 81641.4,
+  "btc_sma": 72740.7375,
   "ranking": [
    [
     "NEARUSDT",
-    32.32
+    12.12
    ],
    [
     "AAVEUSDT",
-    10.88
-   ],
-   [
-    "BCHUSDT",
-    9.77
-   ],
-   [
-    "FILUSDT",
-    9.53
+    2.81
    ],
    [
     "ALGOUSDT",
-    2.52
-   ],
-   [
-    "DOTUSDT",
-    -0.84
-   ],
-   [
-    "LTCUSDT",
-    -1.23
-   ],
-   [
-    "BTCUSDT",
-    -1.61
+    -2.55
    ],
    [
     "ATOMUSDT",
-    -1.71
-   ],
-   [
-    "LINKUSDT",
-    -2.47
+    -3.02
    ],
    [
     "TRXUSDT",
-    -3.85
+    -3.22
    ],
    [
-    "XTZUSDT",
-    -5.71
+    "LTCUSDT",
+    -4.01
    ],
    [
-    "ADAUSDT",
-    -6.42
+    "DOTUSDT",
+    -4.34
+   ],
+   [
+    "FILUSDT",
+    -4.74
+   ],
+   [
+    "BTCUSDT",
+    -5.46
    ],
    [
     "BNBUSDT",
-    -6.67
+    -7.18
    ],
    [
-    "ETCUSDT",
-    -7.17
+    "LINKUSDT",
+    -8.06
    ],
    [
-    "XRPUSDT",
-    -7.65
+    "XTZUSDT",
+    -9.4
    ],
    [
     "SOLUSDT",
-    -8.03
+    -10.84
    ],
    [
     "ETHUSDT",
-    -8.84
+    -12.58
+   ],
+   [
+    "ADAUSDT",
+    -15.23
+   ],
+   [
+    "XRPUSDT",
+    -15.94
+   ],
+   [
+    "BCHUSDT",
+    -16.34
+   ],
+   [
+    "ETCUSDT",
+    -16.97
    ],
    [
     "AVAXUSDT",
-    -10.44
+    -17.43
    ],
    [
     "XLMUSDT",
-    -11.42
-   ],
-   [
-    "UNIUSDT",
-    -13.78
+    -17.57
    ],
    [
     "DOGEUSDT",
-    -14.23
+    -20.76
    ],
    [
     "VETUSDT",
-    -15.73
+    -22.63
+   ],
+   [
+    "UNIUSDT",
+    -23.05
    ]
   ],
   "picks": [
    "NEARUSDT",
-   "AAVEUSDT",
-   "BCHUSDT",
-   "FILUSDT",
-   "ALGOUSDT"
+   "AAVEUSDT"
   ],
-  "day_ts": 1792512000000
+  "day_ts": 1792598400000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1792512000000,
- "last_rebalance_ts": 1791993600000
+ "last_day_ts": 1792598400000,
+ "last_rebalance_ts": 1792598400000
 }
