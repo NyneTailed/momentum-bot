@@ -784,6 +784,11 @@
    1793375493447,
    855.02,
    77572.6
+  ],
+  [
+   1793391172389,
+   855.02,
+   76944.7
   ]
  ],
  "trades": [
@@ -922,110 +927,110 @@
  ],
  "signal": {
   "risk_on": true,
-  "btc": 81734.1,
-  "btc_sma": 73129.37299999999,
+  "btc": 77568.1,
+  "btc_sma": 73151.4865,
   "ranking": [
    [
-    "BNBUSDT",
-    -0.43
-   ],
-   [
     "TRXUSDT",
-    -0.72
-   ],
-   [
-    "BTCUSDT",
-    -1.62
-   ],
-   [
-    "ATOMUSDT",
-    -5.79
+    -0.8
    ],
    [
     "BCHUSDT",
-    -6.24
+    -4.84
    ],
    [
-    "NEARUSDT",
-    -6.44
+    "BTCUSDT",
+    -7.77
    ],
    [
-    "XTZUSDT",
-    -9.64
+    "BNBUSDT",
+    -9.05
    ],
    [
-    "ETHUSDT",
-    -11.44
-   ],
-   [
-    "LTCUSDT",
-    -13.1
-   ],
-   [
-    "SOLUSDT",
-    -13.12
+    "ATOMUSDT",
+    -12.88
    ],
    [
     "XRPUSDT",
-    -13.74
+    -16.69
    ],
    [
-    "DOTUSDT",
-    -13.8
+    "LTCUSDT",
+    -16.99
    ],
    [
-    "DOGEUSDT",
-    -14.03
+    "ETHUSDT",
+    -17.03
    ],
    [
     "FILUSDT",
-    -15.39
+    -17.71
    ],
    [
-    "ADAUSDT",
-    -15.52
+    "NEARUSDT",
+    -18.55
    ],
    [
     "ETCUSDT",
-    -15.97
+    -20.36
    ],
    [
-    "UNIUSDT",
-    -16.62
+    "SOLUSDT",
+    -20.48
    ],
    [
-    "LINKUSDT",
-    -19.09
+    "DOGEUSDT",
+    -20.48
+   ],
+   [
+    "XTZUSDT",
+    -20.94
    ],
    [
     "AAVEUSDT",
-    -19.47
+    -21.41
    ],
    [
-    "AVAXUSDT",
-    -19.74
+    "DOTUSDT",
+    -21.41
    ],
    [
-    "ALGOUSDT",
-    -20.13
+    "ADAUSDT",
+    -22.02
+   ],
+   [
+    "LINKUSDT",
+    -22.39
    ],
    [
     "XLMUSDT",
-    -23.67
+    -22.6
+   ],
+   [
+    "UNIUSDT",
+    -22.91
+   ],
+   [
+    "AVAXUSDT",
+    -23.75
+   ],
+   [
+    "ALGOUSDT",
+    -23.93
    ],
    [
     "VETUSDT",
-    -28.06
+    -35.46
    ]
   ],
   "picks": [],
-  "day_ts": 1793203200000
+  "day_ts": 1793289600000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1793203200000,
+ "last_day_ts": 1793289600000,
  "last_rebalance_ts": 1793203200000
 }
