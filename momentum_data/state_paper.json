@@ -1044,6 +1044,11 @@
    1794484528140,
    855.02,
    72780.1
+  ],
+  [
+   1794511836857,
+   855.02,
+   71533.7
   ]
  ],
  "trades": [
@@ -1181,111 +1186,111 @@
   }
  ],
  "signal": {
-  "risk_on": true,
-  "btc": 73960.2,
-  "btc_sma": 73195.8885,
+  "risk_on": false,
+  "btc": 71689.0,
+  "btc_sma": 73176.891,
   "ranking": [
    [
     "TRXUSDT",
-    -4.33
+    -3.61
    ],
    [
     "BNBUSDT",
-    -8.25
+    -12.0
    ],
    [
     "BTCUSDT",
-    -10.55
-   ],
-   [
-    "UNIUSDT",
-    -12.2
+    -14.04
    ],
    [
     "BCHUSDT",
-    -16.16
+    -16.72
    ],
    [
-    "ETHUSDT",
-    -17.98
-   ],
-   [
-    "LTCUSDT",
-    -18.46
+    "AVAXUSDT",
+    -18.11
    ],
    [
     "ETCUSDT",
     -18.59
    ],
    [
-    "DOGEUSDT",
-    -18.81
+    "LTCUSDT",
+    -19.5
    ],
    [
-    "LINKUSDT",
-    -19.4
+    "ETHUSDT",
+    -20.18
    ],
    [
-    "AVAXUSDT",
-    -19.51
-   ],
-   [
-    "SOLUSDT",
-    -22.09
-   ],
-   [
-    "XRPUSDT",
-    -22.13
+    "UNIUSDT",
+    -20.64
    ],
    [
     "ATOMUSDT",
-    -22.14
+    -21.95
    ],
    [
-    "XTZUSDT",
-    -22.23
+    "DOGEUSDT",
+    -22.18
+   ],
+   [
+    "LINKUSDT",
+    -22.71
+   ],
+   [
+    "SOLUSDT",
+    -23.91
    ],
    [
     "XLMUSDT",
-    -23.02
+    -24.57
    ],
    [
-    "AAVEUSDT",
-    -24.48
+    "XRPUSDT",
+    -25.06
    ],
    [
     "ADAUSDT",
-    -26.3
+    -27.24
    ],
    [
     "ALGOUSDT",
-    -27.41
+    -27.46
    ],
    [
     "DOTUSDT",
-    -30.2
+    -28.55
+   ],
+   [
+    "XTZUSDT",
+    -28.62
+   ],
+   [
+    "AAVEUSDT",
+    -28.77
    ],
    [
     "VETUSDT",
-    -30.66
+    -29.28
    ],
    [
     "NEARUSDT",
-    -32.52
+    -31.29
    ],
    [
     "FILUSDT",
-    -33.33
+    -34.45
    ]
   ],
   "picks": [],
-  "day_ts": 1794326400000
+  "day_ts": 1794412800000
  },
  "start": {
   "ts": 1790896949153,
   "equity": 1000.0,
   "btc": 84718.9
  },
- "last_day_ts": 1794326400000,
- "last_rebalance_ts": 1793808000000
+ "last_day_ts": 1794412800000,
+ "last_rebalance_ts": 1794412800000
 }
